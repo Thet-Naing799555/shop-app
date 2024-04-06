@@ -13,3 +13,5 @@ export const cardTemplate = document.querySelector("#cardTemplate")
 export const cardItemGroup = document.querySelector("#cardItemGroup")
 
 export const cardTotalPrice = document.querySelector(".card-total-price")
+
+export const cardDeleBtn = document.querySelector(".card-dele-btn")

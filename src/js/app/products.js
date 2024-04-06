@@ -1,5 +1,5 @@
 import { productCatogory, products } from "../core/data.js"
-import { cardGroup, cardTemplate, productTemplate } from "../core/selectors.js"
+import { cardGroup, cardTemplate, cardTotalPrice, productTemplate } from "../core/selectors.js"
 
 
 
@@ -68,14 +68,17 @@ export const createCard = (product,quantity) => {
 }
 
 export const cardTotal = () => {
-   const total = document.querySelectorAll(".card-item").length+1
+   const total = document.querySelectorAll(".card-item").length
    document.querySelector(".card-total").innerText=total
    document.querySelector(".inCard").innerText = total
-   cardTotalCost()
+   
 }
 
 export const cardTotalCost = () => {
-  const total = document.querySelectorAll(".card-item")
- total.forEach((x) => console.log(x) )
-
+  let totalPrice = 0
+  const total = [...document.querySelectorAll(".product-price")]
+  // total.reduce((pv,{innerText}) => pv+parseFloat(innerText),0)
+  total.forEach((x) => { totalPrice += parseFloat(x.innerText)} )
+ console.log(totalPrice);
+ cardTotalPrice.innerText=totalPrice.toFixed(2)
 }

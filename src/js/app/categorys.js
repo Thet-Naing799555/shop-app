@@ -1,6 +1,6 @@
 import { products } from "../core/data.js"
 import { cardGroup, cardItemGroup, cardTemplate, categoryGroup, categoryTemplate } from "../core/selectors.js"
-import { createCard, renderProduct } from "./products.js"
+import { cardTotalCost, createCard, renderProduct } from "./products.js"
 
 
 export const createCategory = (categoryName) => {
@@ -20,11 +20,15 @@ categories.forEach((cat) => {
 
 export const handleCategoryGroup =(event) => {
    const currentCat = event.target.innerText
+ 
+
   if(event.target.classList.contains("cat-btn")) {
     const filterProduct = products.filter((x) => x.category === currentCat || currentCat === "All" )
-
+    // event.target.classList.toggle("bg-gray-600")
     cardGroup.innerHTML=null;
     renderProduct(filterProduct)
+
+   
    
   }
 }
@@ -40,9 +44,9 @@ export const handleCardGroup = (event) => {
 
    const currentProductCard = products.find((x) => x.id === currentProductId )
    cardItemGroup.append(createCard(currentProductCard,1))
-     
+      cardTotalCost()
    }
 
-   
+  
      
 }
