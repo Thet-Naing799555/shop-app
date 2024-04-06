@@ -7,3 +7,9 @@ export const categoryGroup = document.querySelector("#categoryGroup")
 export const productTemplate = document.querySelector("#productTemplate")
 
 export const cardGroup = document.querySelector(".cardGroup")
+
+export const cardTemplate = document.querySelector("#cardTemplate")
+
+export const cardItemGroup = document.querySelector("#cardItemGroup")
+
+export const cardTotalPrice = document.querySelector(".card-total-price")
