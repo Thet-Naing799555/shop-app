@@ -1,6 +1,6 @@
 import { products } from "../core/data.js"
-import { cardGroup, cardItemGroup, cardTemplate, categoryGroup, categoryTemplate } from "../core/selectors.js"
-import { cardTotalCost, createCard, renderProduct } from "./products.js"
+import { cardGroup, cardItemGroup,  categoryGroup, categoryTemplate } from "../core/selectors.js"
+import { cardTotal, cardTotalCost, createCard, renderProduct } from "./products.js"
 
 
 export const createCategory = (categoryName) => {
@@ -25,6 +25,14 @@ export const handleCategoryGroup =(event) => {
   if(event.target.classList.contains("cat-btn")) {
     const filterProduct = products.filter((x) => x.category === currentCat || currentCat === "All" )
     // event.target.classList.toggle("bg-gray-600")
+
+    const currentBtn = event.target
+
+   
+
+   document.querySelector(".cat-btn.active")?.classList.remove("active")          // ? က    ရှိလား အရင်စစ် ေပး  ရှိမ အလုပ်ဆက်လုပ် မရှိ၇င် error မတက်
+ currentBtn.classList.add("active")
+
     cardGroup.innerHTML=null;
     renderProduct(filterProduct)
 
@@ -37,14 +45,19 @@ export const handleCategoryGroup =(event) => {
 export const handleCardGroup = (event) => {
   // event.target.classList.toggle("bg-gray-600")
    if(event.target.classList.contains("add-btn")) {
+    event.target.setAttribute("disabled",true)
+   
+   
     
     const currentProduct = event.target.closest(".product-card")
+    currentProduct.querySelector(".add-btn").innerText="Added"
    const currentProductId = parseInt(currentProduct.getAttribute("product-id"))
    
 
    const currentProductCard = products.find((x) => x.id === currentProductId )
    cardItemGroup.append(createCard(currentProductCard,1))
       cardTotalCost()
+      cardTotal()
    }
 
   

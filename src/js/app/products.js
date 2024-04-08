@@ -1,5 +1,5 @@
 import { productCatogory, products } from "../core/data.js"
-import { cardGroup, cardTemplate, cardTotalPrice, productTemplate } from "../core/selectors.js"
+import { cardGroup, cardItemGroup, cardTemplate, cardTotalPrice, productTemplate } from "../core/selectors.js"
 
 
 
@@ -12,11 +12,14 @@ export const createProducts = ({image,id,title,description,price,rating}) => {
   template.querySelector(".price").innerText=price
   template.querySelector(".rate").innerText=rating.rate
   template.querySelector(".count").innerText=rating.count
-
- 
-
   template.querySelector(".product-star").innerHTML = renderStar(Math.round(rating.rate))
 
+ const isExitedInCard = cardItemGroup.querySelector(`[product-card-id='${id}']`)
+ console.log(isExitedInCard);
+if(isExitedInCard) {
+  template.querySelector(".add-btn").setAttribute("disabled",true)
+  template.querySelector(".add-btn").innerText="Added"
+}
 
   return template
 }
@@ -56,21 +59,29 @@ export const renderProduct = (product) => {
 
 export const createCard = (product,quantity) => {
   const template = cardTemplate.content.cloneNode(true)
+  template.querySelector(".card-item").setAttribute("product-card-id",product.id)
+  const cardId = template.querySelector(".card-item").getAttribute("product-card-id")
+ 
+// if( cardId === products.id ) {} else {
 
-     template.querySelector(".card-item-img").src = product.image
-     template.querySelector(".product-title").innerText = product.title
-     template.querySelector(".product-price").innerText = product.price
-     template.querySelector(".card-quantity").innerText = quantity
+  template.querySelector(".card-item-img").src = product.image
+  template.querySelector(".product-title").innerText = product.title
+  template.querySelector(".product-price").innerText = product.price
+  template.querySelector(".card-quantity").innerText = quantity
+  template.querySelector(".product-cost").innerText=product.price
 
-     cardTotal()
-    
-     return template
+  cardTotal()
+ 
+  return template
+// }
+   
 }
 
 export const cardTotal = () => {
-   const total = document.querySelectorAll(".card-item").length
-   document.querySelector(".card-total").innerText=total
-   document.querySelector(".inCard").innerText = total
+   const total = document.querySelectorAll(".card-item")
+   const totalCard =total.length
+   document.querySelector(".card-total").innerText=totalCard
+   document.querySelector(".inCard").innerText = totalCard
    
 }
 

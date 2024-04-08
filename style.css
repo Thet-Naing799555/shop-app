@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 @import url(./node_modules/sweetalert2/dist/sweetalert2.css);
+
+.cat-btn.active {
+    @apply bg-gray-700 text-white;
+  
+    
+}

@@ -9,7 +9,7 @@
   <body>
     <main class="flex flex-col min-h-screen" id="app">
 
-      <header class="  border-b-2 border-b-gray-700 py-3">
+      <header class=" head border-b-2 border-b-gray-700 py-3">
         <div class="container mx-auto flex justify-between px-16">
           <div id="" class="">
             <div class="">
@@ -42,6 +42,7 @@
             </button>
             <button
             type="button"
+            id="openDrawer"
             data-drawer-target="drawer-right-example"
             data-drawer-show="drawer-right-example"
             data-drawer-placement="right"
@@ -94,10 +95,11 @@
               <path
                 d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
               /></svg
-            >Your Card  (<span class="inCard w-8 text-gray-800 flex  content-center items-center justify-center  font-bold  text-xl animate-bounce"> 0 </span>)
+            >Your Card  (<span class="inCard w-8 text-gray-800 flex  content-center items-center justify-center  font-bold  text-xl "> 0 </span>)
           </h5>
           <button
             type="button"
+            
             data-drawer-hide="drawer-right-example"
             aria-controls="drawer-right-example"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -123,6 +125,12 @@
     <!-- ....................  start Card ..................... -->
           <div id="cardItemGroup" class=" flex flex-col flex-grow overflow-y-scroll overflow-x-clip gap-5">
             
+            <div class=" hidden last:block h-full  ">
+             <div class="flex flex-col gap-4 text-center justify-center content-center items-center mt-16"> 
+              <img class="" src="./Shopping bag-bro.svg" alt="">
+              <p class=" font-bold font-serif text-gray-800 animate-pulse">Empty in Your Card !</p>
+             </div>
+            </div>  
            
         </div>
 <!-- ....................... end card ..................... -->
@@ -153,7 +161,7 @@
           <h4 class="mb-2">Product Catogory</h4>
           <div id="categoryGroup" class="flex gap-3 text-nowrap overflow-x-auto ">
           
-            <button class="cat-btn duration-200 active:scale-100 text-gray-700 border-gray-400  border focus:bg-gray-400 px-4 py-1  rounded">All</button>
+            <button class="active cat-btn duration-200 active:scale-100 text-gray-700 border-gray-400  border px-4 py-1  rounded">All</button>
             
           </div>
         </div>
@@ -162,14 +170,16 @@
       <!-- ...............................ProductCard item Section........................ -->
       <section id="product-section" class="py-3">
         <div class="px-6">
-1
+
           <div
             class="cardGroup grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           >
           
             
-            
+           
+
           </div>
+          
         </div>
       </section>
       <!-- ........................Product Section  End........................ -->
@@ -181,19 +191,20 @@
           <div class="flex justify-between items-center">
             <p class="hover:text-blue-600 text-white">
               Copyright @ 2024
-              <a class="underline underline-offset-2" href="#">MMS IT</a>
+              <a class="underline underline-offset-2" href="">MMS IT</a>
             </p>
             <button
               type="button"
-              class="text-white border border-white hover:bg-gray-400 hover:border-blue-800 hover:text-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+              class="text-white border  border-white hover:bg-gray-400 hover:border-blue-800 hover:text-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
             >
-              <svg
+              <a href="head">
+                <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                class="w-6 h-6 pointer-events-none"
               >
                 <path
                   stroke-linecap="round"
@@ -201,16 +212,17 @@
                   d="m4.5 15.75 7.5-7.5 7.5 7.5"
                 />
               </svg>
+              </a>
 
               <span class="sr-only">Icon description</span>
             </button>
           </div>
         </div>
       </footer>
-
+        <!-- ........................... Category Template .............................. -->
     <template id="categoryTemplate">
     
-    <button class="  duration-200 active:scale-100 cat-btn focus:bg-gray-400 border-gray-400 px-4 py-1 border rounded">
+    <button class="  duration-200 active:scale-100 cat-btn  border-gray-400 px-4 py-1 border rounded">
       Electric
     </button>
    
@@ -238,69 +250,7 @@
 
           <div class="flex justify-between items-center mb-3">
             <div class="product-star flex  gap-2">
-              <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-4 h-4 fill-gray-700"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-4 h-4 fill-gray-700"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-4 h-4 fill-gray-700"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-4 h-4 fill-gray-700"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-4 h-4 fill-gray-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                />
-              </svg> -->
-
+             
             </div>
             <p class="">(<span class="rate">0</span>/ <span class="count">0</span> )</p>
           </div>
@@ -310,7 +260,7 @@
           <p class="font-bold mb-4">$ <span class="price">199</span></p>
 
           <button 
-            class="add-btn  border duration-200 scale-100 border-gray-700 text-gray-700 w-full py-2 rounded active:bg-slate-600 active:text-white"
+            class="add-btn   border duration-200 active:scale-95 disabled:scale-100  disabled:bg-slate-700 disabled:text-white border-gray-700 text-gray-700 w-full py-2 rounded active:bg-slate-600 active:text-white"
           >
             Add To Card
           </button>
@@ -326,29 +276,18 @@
 
        <div class=" absolute top-5 right-1">
 
-         <button class="card-dele-btn text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg
-              class="w-3 h-3 pointer-events-none"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
+         <button class="card-dele-btn text-gray-800 bg-transparent disabled:bg-gray-600 hover:bg-gray-200 hover:text-gray-600 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 pointer-events-none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+          </svg>
+          
       </button>
     </div>
 
       <div class="card-info group border border-gray-400 p-5 rounded-md">
      <p class="product-title font-bold mb-3 mt-5 line-clamp-1">Men Cotton Jacket</p>
      <div class="product-info flex justify-between ">
-    <p>$ <span class="product-price text-xl">10.59</span></p>
+    <p>$ <span class="product-price text-xl">10.59</span><span class="product-cost text-xl sr-only">10.59</span></p>
 
     <div  class="flex">
 
