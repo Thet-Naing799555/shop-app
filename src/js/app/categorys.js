@@ -1,5 +1,5 @@
 import { products } from "../core/data.js"
-import { cardGroup, cardItemGroup,  categoryGroup, categoryTemplate } from "../core/selectors.js"
+import { cardGroup, cardItemGroup,  categoryGroup, categoryTemplate, openDrawer } from "../core/selectors.js"
 import { cardTotal, cardTotalCost, createCard, renderProduct } from "./products.js"
 
 
@@ -52,12 +52,61 @@ export const handleCardGroup = (event) => {
     const currentProduct = event.target.closest(".product-card")
     currentProduct.querySelector(".add-btn").innerText="Added"
    const currentProductId = parseInt(currentProduct.getAttribute("product-id"))
+
+   const currentImage = currentProduct.querySelector(".product-img")
+// console.log(currentImage.getBoundingClientRect());
+  // console.log(openDrawer.getBoundingClientRect());
+
+  const animateImg = new Image()
+  animateImg.src=currentImage.src
+  animateImg.style.position="fixed"
+  animateImg.style.top=currentImage.getBoundingClientRect().top + "px"
+  animateImg.style.right=currentImage.getBoundingClientRect().right  + "px"
+  animateImg.style.bottom=currentImage.getBoundingClientRect().bottom + "px"
+  animateImg.style.left=currentImage.getBoundingClientRect().left  + "px"
+  animateImg.style.width=currentImage.getBoundingClientRect().width + "px"
+  animateImg.style.height=currentImage.getBoundingClientRect().height + "px"
+  
+  
+  document.body.append(animateImg)
+  console.log(animateImg.getBoundingClientRect());
+  
+  const keyframes= [
+     {
+     top: currentImage.getBoundingClientRect().top + "px" ,
+     left :   currentImage.getBoundingClientRect().left + "px"
+
+     },{
+      top: openDrawer.querySelector("svg").getBoundingClientRect().top + "px" ,
+      left :   openDrawer.querySelector("svg").getBoundingClientRect().left + "px",
+      height : "0px",
+      width : "0px",
+      transform : "rotate(2turn)"
+     }
+  ]
+  const duration = 500
+   const addToCardAnimation = animateImg.animate(keyframes,duration)
    
+   const handleAnimanationFished = () => {
+    cardTotalCost()
+    cardTotal()
+    animateImg.remove()
+    openDrawer.classList.add("animate__tada")
+
+    openDrawer.addEventListener("animationend",() => {
+      openDrawer.classList.remove("animate__tada")
+
+      
+    })
+   }
+
+
+
+   addToCardAnimation.addEventListener("finish",handleAnimanationFished)
 
    const currentProductCard = products.find((x) => x.id === currentProductId )
    cardItemGroup.append(createCard(currentProductCard,1))
-      cardTotalCost()
-      cardTotal()
+     
    }
 
   

@@ -15,7 +15,7 @@ export const createProducts = ({image,id,title,description,price,rating}) => {
   template.querySelector(".product-star").innerHTML = renderStar(Math.round(rating.rate))
 
  const isExitedInCard = cardItemGroup.querySelector(`[product-card-id='${id}']`)
- console.log(isExitedInCard);
+ 
 if(isExitedInCard) {
   template.querySelector(".add-btn").setAttribute("disabled",true)
   template.querySelector(".add-btn").innerText="Added"
